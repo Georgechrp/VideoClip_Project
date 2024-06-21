@@ -1,0 +1,31 @@
+﻿<Window x:Class="VideoClip_Project.SignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoClip_Project"
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Background="#272537">
+        <Grid>
+            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
+            <Label Content="Sign Up Page" FontSize="35" HorizontalAlignment="Center" Margin="0,68,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Full Name" FontSize="20" HorizontalAlignment="Left" Margin="235,150,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Username" FontSize="20" HorizontalAlignment="Left" Margin="235,200,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Email" FontSize="20" HorizontalAlignment="Left" Margin="235,250,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Phone" FontSize="20" HorizontalAlignment="Left" Margin="235,300,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <Label Content="Password" FontSize="20" HorizontalAlignment="Left" Margin="235,350,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="FullName" Text="Fullname" GotFocus="FullName_GotFocus" LostFocus="FullName_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="37"/>
+            <TextBox x:Name="Username" Text="Username" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,200,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181" Height="37"/>
+            <TextBox x:Name="Email" Text="Email" GotFocus="Email_GotFocus" LostFocus="Email_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="37"/>
+            <TextBox x:Name="Phone" Text="Phone" GotFocus="Phone_GotFocus" LostFocus="Phone_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,300,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181" Height="37"/>
+            <PasswordBox x:Name="Password" GotFocus="Password_GotFocus" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="37"/>
+            <Button Content="SignUp" FontSize="20" HorizontalAlignment="Center" Margin="0,443,0,0" VerticalAlignment="Top" Background="#FF57FF01" Height="49" Width="180" FontWeight="Bold" Click="BtnSignUp"/>
+            <Label Name="LinkTextBlock" Foreground="Blue" Cursor="Hand" HorizontalAlignment="Left" Margin="370,392,0,0" MouseLeftButtonDown="LinkTextBlock_MouseLeftButtonDown" Content="Είστε ήδη χρήστης;" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+    </Border>
+</Window>

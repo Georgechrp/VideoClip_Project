@@ -1,0 +1,21 @@
+﻿<Window x:Class="VideoClip_Project.InputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoClip_Project"
+        mc:Ignorable="d"
+                Height="600" Width="920"
+WindowStyle="None"
+ResizeMode="NoResize"
+Background="Transparent"
+AllowsTransparency="True">
+    <Border Background="#FF323045">
+        <Grid>
+            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
+            <Label Content="Video Title:" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,196,0,0" Foreground="White"/>
+            <TextBox Name="txtResponse" Text="Πληκτρολογήστε το όνομα του video clip σας" GotFocus="txtResponse_GotFocus" LostFocus="txtResponse_LostFocus" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,205,0,0" Height="25" Width="260"/>
+            <Button Content="OK" FontSize="25" Width="100" Height="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,430,275" Click="OK_Click" Background="White"/>
+        </Grid>
+    </Border>
+</Window>
