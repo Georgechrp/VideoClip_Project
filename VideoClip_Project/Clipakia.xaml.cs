@@ -30,9 +30,7 @@ namespace VideoClip_Project
 
         public Clipakia()
         {
-
             InitializeComponent();
-            LoadVideoClips();
         }
 
         // Method to save video clips to a JSON file
@@ -40,20 +38,6 @@ namespace VideoClip_Project
         {
             var json = JsonConvert.SerializeObject(videoClips, Formatting.Indented);
             File.WriteAllText(SaveFilePath, json);
-        }
-
-        // Method to load video clips from a JSON file
-        private void LoadVideoClips()
-        {
-            if (File.Exists(SaveFilePath))
-            {
-                var json = File.ReadAllText(SaveFilePath);
-                videoClips = JsonConvert.DeserializeObject<ObservableCollection<VideoClip>>(json) ?? new ObservableCollection<VideoClip>();
-            }
-            else
-            {
-                videoClips = new ObservableCollection<VideoClip>();
-            }
         }
 
         private void BtnLoad_Click(object sender, RoutedEventArgs e)

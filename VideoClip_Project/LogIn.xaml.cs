@@ -80,6 +80,8 @@ namespace VideoClip_Project
                     MessageBox.Show("Login successful!");
                     Clipakia clipakia = new Clipakia();
                     this.Visibility = Visibility.Hidden;
+                    clipakia.Left = 100;
+                    clipakia.Top = 100;
                     clipakia.Show();
                 }
                 else

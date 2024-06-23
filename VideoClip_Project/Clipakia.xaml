@@ -15,11 +15,6 @@
             <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
             <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
-            <!-- Search Bar -->
-
-            <TextBox Name="txtSearch" Foreground="#FF84FF00" Height="45" Width="200" Margin="20,150,0,0"/>
-            <Button Name="btnSearch" FontSize="25" Height="45" Width="122" Content="Search" Click="BtnSearch_Click" Margin="400,150,0,0" Foreground="Black" Background="White" BorderBrush="#FF4DFF00"/>
-
 
             <!-- Rating -->
             <TextBlock Text="Rate this video:" FontSize="25" Height="45" Width="182" VerticalAlignment="Center" Margin="-80,0,0,0" Foreground="White"/>
@@ -37,6 +32,14 @@
                 <ComboBoxItem Content="5" />
             </ComboBox>
             <Button Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="400,0,0,0" Foreground="Black" Background="White" BorderBrush="Black"/>
+
+
+            <!-- Search Bar -->
+
+            <TextBox Name="txtSearch" Foreground="#FF84FF00" Height="45" Width="200" Margin="20,150,0,0"/>
+            <Button Name="btnSearch" FontSize="25" Height="45" Width="122" Content="Search" Click="BtnSearch_Click" Margin="400,150,0,0" Foreground="Black" Background="White" BorderBrush="#FF4DFF00"/>
+
+
 
             <!-- Control Buttons -->
             <Button Name="btnLoad" FontSize="25" Height="45" Content="Load Video" Click="BtnLoad_Click" Margin="107,275,626,280" Background="White" Foreground="Black" RenderTransformOrigin="0.489,2.001"/>
