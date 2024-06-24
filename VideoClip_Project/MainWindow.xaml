@@ -15,25 +15,27 @@
 
             <Button Content="LogIn" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="750,34,0,0" VerticalAlignment="Top" Foreground="White" Background="Black" Height="45" Width="122" Click="BtnLogIn"/>
             <Button Content="SignUp" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="600,34,0,0" VerticalAlignment="Top" Background="Black" Foreground="#FFFAFAFA" Height="45" Width="122" Click="BtnSignUp"/>
-            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
+            <Label Content="RateMyClip" FontSize="50" HorizontalAlignment="Left" Margin="66,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFFFF" FontWeight="Bold"/>
 
-            <MediaElement x:Name="mediaElement" Width="464" Height="267" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,161,0,0" />
+            <MediaElement x:Name="mediaElement" Width="464" Height="271" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,157,0,0" />
             <Button Content="Previous" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,436,0,0" Click="PreviousButton_Click" />
             <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" />
-            <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,102,0,0" TextAlignment="Center" />
+            <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,119,0,0" TextAlignment="Center" />
 
 
 
-            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="246" Margin="644,119,0,0">
+            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="246" Margin="600,119,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Title}" FontWeight="Bold" Width="200"/>
-                            <TextBlock Text="{Binding Rating}" Margin="10,0,0,0"/>
+                            <TextBlock Text="{Binding VideoTitle}" FontWeight="Bold" Width="100"/>
+                            <TextBlock Text="{Binding Rating}" Margin="10,0,0,0" Width="50"/>
+                            <TextBlock Text="{Binding RatingCount}" Margin="10,0,0,0" Width="50"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
         </Grid>
     </Border>
 

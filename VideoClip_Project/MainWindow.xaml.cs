@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using MySql.Data.MySqlClient;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VideoClip_Project.Models;
+using static VideoClip_Project.MainWindow;
 
 namespace VideoClip_Project
 {
@@ -23,15 +25,83 @@ namespace VideoClip_Project
         private ObservableCollection<VideoClip> videoClips = new ObservableCollection<VideoClip>();
         private string[] videoFiles = { };
         private int currentIndex = 0;
+
         public MainWindow()
         {
             InitializeComponent();
             LoadVideoFiles();
             DisplayCurrentVideo();
-
+            LoadAndBindData();
         }
 
-      
+
+        private void LoadAndBindData()
+        {
+            List<VideoRating> videoRatings = GetVideoRatings();
+
+            // Ομαδοποίηση και υπολογισμός του μέσου όρου των αξιολογήσεων βάσει του τίτλου της ταινίας
+            var averagedRatings = videoRatings
+                .GroupBy(vr => vr.VideoTitle)
+                .Select(g => new VideoRating
+                {
+                    VideoTitle = g.Key,
+                    Rating = (int)g.Average(vr => vr.Rating), // Υπολογισμός μέσου όρου και μετατροπή σε ακέραιο
+                    RatingCount = g.Count() // Αριθμός αξιολογήσεων
+                })
+                .ToList();
+
+            videoListBox.ItemsSource = averagedRatings;
+        }
+        public class VideoRating
+        {
+            public string Username { get; set; } = string.Empty;
+            public int Rating { get; set; }
+            public string VideoTitle { get; set; } = string.Empty;
+
+            // Νέα πεδία για μέσο όρο και αριθμό αξιολογήσεων
+            public double AverageRating { get; set; }
+            public int RatingCount { get; set; }
+
+            // Υπολογιζόμενο πεδίο για εμφάνιση πληροφοριών
+           // public string DisplayInfo => $"{VideoTitle}, Μέσος Όρος Αξιολογήσεων: {AverageRating:F1}, {RatingCount} Αξιολογήσεις";
+        }
+
+
+
+        public static List<VideoRating> GetVideoRatings()
+        {
+            var videoRatings = new List<VideoRating>();
+
+            string connectionString = "server=localhost; uid=root; pwd=gr3ty; database=videoclipdb";
+            using (var con = new MySqlConnection(connectionString))
+            {
+                con.Open();
+
+                string sql = "SELECT username, rating, video_title FROM video_ratings";
+                using (var cmd = new MySqlCommand(sql, con))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var videoRating = new VideoRating
+                            {
+                                Username = reader["username"].ToString(),
+                                Rating = Convert.ToInt32(reader["rating"]),
+                                VideoTitle = reader["video_title"].ToString()
+                            };
+
+                            videoRatings.Add(videoRating);
+                        }
+                    }
+                }
+                con.Close();
+            }
+
+            return videoRatings;
+        }
+
+
 
         private void LoadVideoFiles()
         {
@@ -40,7 +110,7 @@ namespace VideoClip_Project
 
             if (videoFiles.Length == 0)
             {
-                MessageBox.Show("No video files found in the directory.");
+                //MessageBox.Show("No video files found in the directory.");
             }
         }
         private void DisplayCurrentVideo()
@@ -49,9 +119,12 @@ namespace VideoClip_Project
             {
                 string currentVideoPath = videoFiles[currentIndex];
                 mediaElement.Source = new Uri(currentVideoPath);
-                videoNameTextBlock.Text = System.IO.Path.GetFileName(currentVideoPath);
+                string temp = System.IO.Path.GetFileName(currentVideoPath);
+                videoNameTextBlock.Text = temp.Substring(0, temp.Length - 4);
             }
         }
+
+        //My buttons
         private void PreviousButton_Click(object sender, RoutedEventArgs e)
         {
             if (videoFiles.Length > 0)
@@ -69,48 +142,7 @@ namespace VideoClip_Project
             }
         }
 
-
-        private string PromptForTitle()
-        {
-            InputDialog inputDialog = new InputDialog("Enter video title:");
-            if (inputDialog.ShowDialog() == true)
-            {
-                return inputDialog.ResponseText;
-            }
-            return string.Empty;
-        }
-
-/*
-        private void LoadVideos()
-        {
-            string filePath = "C:\\Users\\georg\\OneDrive - unipi.gr\\Επιφάνεια εργασίας\\VideoClip_Project\\videos";   //openFileDialog.FileName;
-                                                                                                                        //mediaElement.Source = new Uri(filePath);
-
-            // Φιλτράρετε τα αρχεία για να πάρετε μόνο βίντεο (εδώ υποθέτουμε .mp4 αρχεία)
-            string[] videoFiles = Directory.GetFiles(filePath, "*.mp4");
-
-            mediaElement.Source = new Uri(filePath);
-
-            // Prompt user for the video title
-            string videoTitle = filePath;
-            if (!string.IsNullOrEmpty(videoTitle))
-            {
-                // Add video to the list
-                VideoClip video = new VideoClip
-                {
-                    Title = videoTitle,
-                    Path = filePath,
-                    Rating = 0
-                };
-                videoClips.Add(video);
-            }
-            else
-            {
-                MessageBox.Show("Video title cannot be empty.");
-            }
-            
-        }*/
-
+        //Auto buttons
         private void BtnLogIn(object sender, RoutedEventArgs e)
         {
             LogIn obgLogIn = new LogIn();
@@ -121,7 +153,6 @@ namespace VideoClip_Project
 
             obgLogIn.Show();
         }
-
         private void BtnSignUp(object sender, RoutedEventArgs e)
         {
             SignUp obgSignUp = new SignUp();
