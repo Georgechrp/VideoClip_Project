@@ -24,13 +24,26 @@
 
 
 
-            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="246" Margin="600,119,0,0">
+            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding VideoTitle}" FontWeight="Bold" Width="100"/>
-                            <TextBlock Text="{Binding Rating}" Margin="10,0,0,0" Width="50"/>
-                            <TextBlock Text="{Binding RatingCount}" Margin="10,0,0,0" Width="50"/>
+                            <TextBlock Text="{Binding VideoTitle}" Margin="5" />
+                            <ItemsControl ItemsSource="{Binding Stars}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="&#9733;" FontSize="16" Foreground="Gold" Margin="0"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text=" (" Margin="5,0,0,0" />
+                            <TextBlock Text="{Binding RatingCount}" Margin="0" />
+                            <TextBlock Text=" αξιολογήσεις)" Margin="5,0,0,0" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

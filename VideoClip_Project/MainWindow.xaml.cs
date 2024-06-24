@@ -39,18 +39,17 @@ namespace VideoClip_Project
         {
             List<VideoRating> videoRatings = GetVideoRatings();
 
-            // Ομαδοποίηση και υπολογισμός του μέσου όρου των αξιολογήσεων βάσει του τίτλου της ταινίας
-            var averagedRatings = videoRatings
+            var aggregatedRatings = videoRatings
                 .GroupBy(vr => vr.VideoTitle)
                 .Select(g => new VideoRating
                 {
                     VideoTitle = g.Key,
-                    Rating = (int)g.Average(vr => vr.Rating), // Υπολογισμός μέσου όρου και μετατροπή σε ακέραιο
-                    RatingCount = g.Count() // Αριθμός αξιολογήσεων
+                    AverageRating = g.Average(vr => vr.Rating),
+                    RatingCount = g.Count()
                 })
                 .ToList();
 
-            videoListBox.ItemsSource = averagedRatings;
+            videoListBox.ItemsSource = aggregatedRatings;
         }
         public class VideoRating
         {
@@ -58,12 +57,11 @@ namespace VideoClip_Project
             public int Rating { get; set; }
             public string VideoTitle { get; set; } = string.Empty;
 
-            // Νέα πεδία για μέσο όρο και αριθμό αξιολογήσεων
             public double AverageRating { get; set; }
             public int RatingCount { get; set; }
 
-            // Υπολογιζόμενο πεδίο για εμφάνιση πληροφοριών
-           // public string DisplayInfo => $"{VideoTitle}, Μέσος Όρος Αξιολογήσεων: {AverageRating:F1}, {RatingCount} Αξιολογήσεις";
+            // Δημιουργούμε μια λίστα για τα αστέρια
+            public List<int> Stars => Enumerable.Range(1, (int)Math.Round(AverageRating)).ToList();
         }
 
 

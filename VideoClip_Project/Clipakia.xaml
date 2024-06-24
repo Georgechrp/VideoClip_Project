@@ -12,8 +12,8 @@
         AllowsTransparency="True">
     <Border Background="#FF323045">
         <Grid>
-            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
-            <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Label Content="RateMyClip" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" FontWeight="Bold"/>
+            <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,58,0,0" />
 
 
             <!-- Rating -->
