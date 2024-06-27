@@ -9,6 +9,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         AllowsTransparency="True">
     <Border Background="#272537">
         <Grid>

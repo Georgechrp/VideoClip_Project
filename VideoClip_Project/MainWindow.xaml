@@ -8,6 +8,7 @@
         Height="600" Width="920"
         WindowStyle="None"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
     <Border Background="#272537">
