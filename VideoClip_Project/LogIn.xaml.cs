@@ -36,13 +36,13 @@ namespace VideoClip_Project
 
             try
             {
-                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=videoclipdb";
+                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
                 using (MySqlConnection con = new MySqlConnection(connstring))
                 {
                     con.Open();
 
                     // SQL query to check if a user exists with the provided username and password
-                    string sql = "SELECT COUNT(*) FROM users WHERE username = @username AND password = @password";
+                    string sql = "SELECT COUNT(*) FROM user WHERE username = @username AND password = @password";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, con))
                     {

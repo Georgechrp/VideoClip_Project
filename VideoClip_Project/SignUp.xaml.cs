@@ -29,12 +29,12 @@ namespace VideoClip_Project
         {
             try
             {
-                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=videoclipdb";
+                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
                 using (MySqlConnection con = new MySqlConnection(connstring))
                 {
                     con.Open();
                     // SQL query to insert data into the 'user' table
-                    string sql = "INSERT INTO users (fullname, username, email, phone, password) VALUES (@fullname, @username, @email, @phone, @password)";
+                    string sql = "INSERT INTO user (fullname, username, email, phone, password) VALUES (@fullname, @username, @email, @phone, @password)";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, con))
                     {
