@@ -11,6 +11,84 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.Resources>
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF6200EE"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#FF6200EE"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF3700B3"/>
+                    <Setter Property="BorderBrush" Value="#FF3700B3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="StyledListBox" TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StyledListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF3700B3"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF6200EE"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    
     <Border Background="#272537">
         <Grid>
 
@@ -19,13 +97,14 @@
             <Label Content="RateMyClip" FontSize="50" HorizontalAlignment="Left" Margin="66,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFFFF" FontWeight="Bold"/>
 
             <MediaElement x:Name="mediaElement" Width="464" Height="271" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,157,0,0" />
-            <Button Content="Previous" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,436,0,0" Click="PreviousButton_Click" />
-            <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" />
+            <Button Content="Previous" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,436,0,0" Click="PreviousButton_Click"  Style="{StaticResource StyledButton}"/>
+            <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" Style="{StaticResource StyledButton}" />
             <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,119,0,0" TextAlignment="Center" />
 
 
 
-            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0">
+            <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0"
+                     Style="{StaticResource StyledListBox}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -48,8 +127,10 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <StaticResource ResourceKey="StyledListBoxItem"/>
+                </ListBox.ItemContainerStyle>
             </ListBox>
-
         </Grid>
     </Border>
 

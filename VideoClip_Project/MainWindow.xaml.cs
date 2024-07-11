@@ -39,6 +39,9 @@ namespace VideoClip_Project
         {
             List<VideoRating> videoRatings = GetVideoRatings();
 
+            MessageBox.Show(videoRatings.ToString());
+           
+
             var aggregatedRatings = videoRatings
                 .GroupBy(vr => vr.VideoTitle)
                 .Select(g => new VideoRating
@@ -70,12 +73,12 @@ namespace VideoClip_Project
         {
             var videoRatings = new List<VideoRating>();
 
-            string connectionString = "server=localhost; uid=root; pwd=gr3ty; database=videoclipdb";
+            string connectionString = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
             using (var con = new MySqlConnection(connectionString))
             {
                 con.Open();
 
-                string sql = "SELECT username, rating, video_title FROM video_ratings";
+                string sql = "SELECT username, rating, video_title FROM ratings";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     using (var reader = cmd.ExecuteReader())
@@ -104,6 +107,7 @@ namespace VideoClip_Project
         private void LoadVideoFiles()
         {
             string folderPath = @"C:\Users\georg\OneDrive - unipi.gr\Επιφάνεια εργασίας\VideoClip_Project\videos";
+            //string folderPath = @"VideoClip_Project\videos";
             videoFiles = Directory.GetFiles(folderPath, "*.mp4");
 
             if (videoFiles.Length == 0)
