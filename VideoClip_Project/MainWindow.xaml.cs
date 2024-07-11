@@ -39,8 +39,6 @@ namespace VideoClip_Project
         {
             List<VideoRating> videoRatings = GetVideoRatings();
 
-            MessageBox.Show(videoRatings.ToString());
-           
 
             var aggregatedRatings = videoRatings
                 .GroupBy(vr => vr.VideoTitle)
