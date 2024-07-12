@@ -1,0 +1,56 @@
+DROP TABLE video_clips;
+
+USE ratemyclipdb;
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(100) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE video_clips (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    averageRating INT, 
+    UNIQUE KEY (title)
+);
+
+CREATE TABLE ratings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100),
+    title VARCHAR(100),
+    rating INT,
+    FOREIGN KEY (username) REFERENCES user(username),
+    FOREIGN KEY (title) REFERENCES video_clips(title)
+);
+
+-- Εισαγωγή πέντε εγγραφών στον πίνακα user
+INSERT INTO user (fullname, username, email, phone, password) VALUES
+('Maria Papadopoulou', 'maria_p', 'maria@example.com', '6978123456', 'hashed_password3'),
+('Nikos Georgiou', 'nikos_g', 'nikos@example.com', '6909876543', 'hashed_password4'),
+('Eleni Ioannou', 'eleni_i', 'eleni@example.com', '6943219876', 'hashed_password5'),
+('Giannis Vasileiou', 'giannis_v', 'giannis@example.com', '6976453210', 'hashed_password6'),
+('Katerina Antoniou', 'katerina_a', 'katerina@example.com', '6987654321', 'hashed_password7');
+
+
+
+INSERT INTO video_clips (title, averageRating) VALUES
+('Cooking Techniques', 1),
+('Gardening Tips', 5),
+('Fitness Exercises', 2),
+('Photography Essentials', 4),
+('Travel Vlog', 5);
+
+
+-- Εισαγωγή πέντε εγγραφών στον πίνακα ratings
+INSERT INTO ratings (username, title, rating) VALUES
+('maria_p',  'Cooking Techniques', 2),
+('nikos_g',  'Gardening Tips', 4),
+('eleni_i', 'Fitness Exercises', 1),
+('giannis_v', 'Photography Essentials', 4),
+('katerina_a', 'Travel Vlog', 5);
+
+
