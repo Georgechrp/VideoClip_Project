@@ -31,16 +31,10 @@ namespace VideoClip_Project
         public Clipakia()
         {
             InitializeComponent();
+            LoadVideoButton_Click();
         }
 
-        // Method to save video clips to a JSON file
-        private void SaveVideoClips()
-        {
-            var json = JsonConvert.SerializeObject(videoClips, Formatting.Indented);
-            File.WriteAllText(SaveFilePath, json);
-        }
-
-        private void BtnLoad_Click(object sender, RoutedEventArgs e)
+        private void LoadVideoButton_Click()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -53,7 +47,7 @@ namespace VideoClip_Project
                 mediaElement.Source = new Uri(filePath);
 
                 // Prompt user for the video title
-                string videoTitle = PromptForTitle();
+                string videoTitle = filePath.Substring(0, filePath.Length - 4);    //PromptForTitle();
                 if (!string.IsNullOrEmpty(videoTitle))
                 {
                     // Add video to the list
@@ -71,6 +65,13 @@ namespace VideoClip_Project
                     MessageBox.Show("Video title cannot be empty.");
                 }
             }
+        }
+
+        // Method to save video clips to a JSON file
+        private void SaveVideoClips()
+        {
+            var json = JsonConvert.SerializeObject(videoClips, Formatting.Indented);
+            File.WriteAllText(SaveFilePath, json);
         }
 
         private string PromptForTitle()
@@ -95,7 +96,7 @@ namespace VideoClip_Project
                     con.Open();
 
                     // SQL query to insert the rating into the video_ratings table
-                    string sql = "INSERT INTO video_ratings (username, rating, video_title) VALUES (@username, @rating, @videoTitle)";
+                    string sql = "INSERT INTO ratings (username, rating, video_title) VALUES (@username, @rating, @videoTitle)";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, con))
                     {
@@ -117,8 +118,6 @@ namespace VideoClip_Project
                 // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
             }
         }
-
-
 
 
         private void BtnRate_Click(object sender, RoutedEventArgs e)
@@ -175,7 +174,7 @@ namespace VideoClip_Project
             lbResults.Items.Clear();
             foreach (var result in results)
             {
-                lbResults.Items.Add($"{result.Title} (Rating: {result.Rating})");
+                lbResults.Items.Add($"{System.IO.Path.GetFileName(result.Title)} (Rating: {result.Rating})");
             }
         }
 

@@ -165,55 +165,8 @@ namespace VideoClip_Project
 
 
 
-        private void SaveVideoClips()
-        {
-            var json = JsonConvert.SerializeObject(videoClips, Formatting.Indented);
-            File.WriteAllText(SaveFilePath, json);
-        }
 
 
-        private string PromptForTitle()
-        {
-            InputDialog inputDialog = new InputDialog("Enter video title:");
-            if (inputDialog.ShowDialog() == true)
-            {
-                return inputDialog.ResponseText;
-            }
-            return string.Empty;
-        }
-
-        private void BtnLoad_Click(object sender, RoutedEventArgs e)
-        {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Video Files|*.mp4;*.avi;*.wmv;*.mov"
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string filePath = openFileDialog.FileName;
-                mediaElement.Source = new Uri(filePath);
-
-                // Prompt user for the video title
-                string videoTitle = PromptForTitle();
-                if (!string.IsNullOrEmpty(videoTitle))
-                {
-                    // Add video to the list
-                    VideoClip video = new VideoClip
-                    {
-                        Title = videoTitle,
-                        Path = filePath,
-                        Rating = 0
-                    };
-                    videoClips.Add(video);
-                    SaveVideoClips();
-                }
-                else
-                {
-                    MessageBox.Show("Video title cannot be empty.");
-                }
-            }
-        }
+      
     }
 }

@@ -22,7 +22,6 @@ namespace VideoClip_Project
         public SignUp()
         {
             InitializeComponent();
-            Password.Password = "••••••••";
         }
         //insert data in MySQL table users for signup
         private void insertdata(string fullname, string username, string email, string phone, string password)
@@ -80,13 +79,10 @@ namespace VideoClip_Project
 
                 insertdata(fullname, username, email, phone, password);
 
-                MainWindow menu = new MainWindow();
+                MenuWindow menu = new MenuWindow();
                 this.Visibility = Visibility.Hidden;
-               
-                menu.ButtonLogIn.Visibility = Visibility.Hidden;
-                menu.ButtonSignUp.Visibility = Visibility.Hidden;
                 menu.Show();
-
+                
             }
             else
             {
@@ -107,8 +103,11 @@ namespace VideoClip_Project
         //Hide the gray text when box got focus or Unhide if lost focus
         private void FullName_GotFocus(object sender, RoutedEventArgs e)
         {
-            FullName.Text = "";
-            FullName.Foreground = new SolidColorBrush(Colors.Black);
+            if (FullName.Text == "Fullname")
+            {
+                FullName.Text = "";
+                FullName.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
         private void FullName_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -121,8 +120,11 @@ namespace VideoClip_Project
         }
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            Username.Text = "";
-            Username.Foreground = new SolidColorBrush(Colors.Black);
+            if (Username.Text == "Username")
+            {
+                Username.Text = "";
+                Username.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
         private void Username_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -135,8 +137,11 @@ namespace VideoClip_Project
         }
         private void Email_GotFocus(object sender, RoutedEventArgs e)
         {
-            Email.Text = "";
-            Email.Foreground = new SolidColorBrush(Colors.Black);
+            if (Email.Text == "Email")
+            {
+                Email.Text = "";
+                Email.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
         private void Email_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -149,8 +154,11 @@ namespace VideoClip_Project
         }
         private void Phone_GotFocus(object sender, RoutedEventArgs e)
         {
-            Phone.Text = "";
-            Phone.Foreground = new SolidColorBrush(Colors.Black);
+            if (Phone.Text == "Phone")
+            {
+                Phone.Text = "";
+                Phone.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
         private void Phone_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -163,15 +171,15 @@ namespace VideoClip_Project
 
         private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
-            Password.Password = "";
-            Password.Foreground = new SolidColorBrush(Colors.Black);
+            //Password.Password = "";
+            //Password.Foreground = new SolidColorBrush(Colors.Black);
         }
         private void Password_LostFocus(object sender, RoutedEventArgs e)
         {
             if (Password.Password == "")
             {
-                Password.Password = "••••••••";
-                Password.Foreground = new SolidColorBrush(Colors.Black);
+                //Password.Password = "••••••••";
+               // Password.Foreground = new SolidColorBrush(Colors.Black);
             }
             
         }

@@ -26,7 +26,6 @@ namespace VideoClip_Project
         public LogIn()
         {
             InitializeComponent();
-            Password.Password = "••••••••";
         }
 
         //checks if the username and the password is valid
@@ -78,12 +77,10 @@ namespace VideoClip_Project
                 if (ValidateUser(username, password))
                 {
                     MessageBox.Show("Login successful!");
-                    MainWindow menu = new MainWindow();
+                    MenuWindow menu = new MenuWindow();
                     this.Visibility = Visibility.Hidden;
-                    
-                    menu.ButtonLogIn.Visibility = Visibility.Hidden;
-                    menu.ButtonSignUp.Visibility = Visibility.Hidden;
                     menu.Show();
+
                 }
                 else
                 {
@@ -110,9 +107,12 @@ namespace VideoClip_Project
 
         // when clicking username box
         private void Username_GotFocus(object sender, RoutedEventArgs e)
-        {  
+        {
+            if (Username.Text == "Όνομα χρήστη(username)") {
                 Username.Text = "";
                 Username.Foreground = new SolidColorBrush(Colors.Black);
+            }
+
         }
         private void Username_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -126,15 +126,18 @@ namespace VideoClip_Project
         // when clicking password box
         private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
-            Password.Password = "";
-            Password.Foreground = new SolidColorBrush(Colors.Black);
+            if (Password.Password == "")
+            {
+                //Password.Password = "";
+                //Password.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
         private void Password_LostFocus(object sender, RoutedEventArgs e)
         {
             if (Password.Password == "")
             {
-                Password.Password = "••••••••";
-                Password.Foreground = new SolidColorBrush(Colors.Black);
+                //Password.Password = "";
+                //Password.Foreground = new SolidColorBrush(Colors.Black);
             }
             
         }
