@@ -27,11 +27,13 @@ namespace VideoClip_Project
     {
         private ObservableCollection<VideoClip> videoClips = new ObservableCollection<VideoClip>();
         private const string SaveFilePath = "videoClips.json";
-
+        static string stars = "2";
+        static string name_of_upload_video = "";
         public Clipakia()
         {
             InitializeComponent();
             LoadVideoButton_Click();
+            name_of_upload_video = InputDialog.videoTitle;
         }
 
         private void LoadVideoButton_Click()
@@ -84,9 +86,7 @@ namespace VideoClip_Project
             return string.Empty;
         }
 
-
-
-        private string connstring = "server=localhost; uid=root; pwd=gr3ty; database=videoclipdb";
+        private string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
         public void AddRating(string username, string rating, string videoTitle)
         {
             try
@@ -94,6 +94,12 @@ namespace VideoClip_Project
                 using (MySqlConnection con = new MySqlConnection(connstring))
                 {
                     con.Open();
+
+                    int ratingInt;
+                    if (!int.TryParse(rating, out ratingInt))
+                    {
+                        throw new ArgumentException("Invalid rating value");
+                    }
 
                     // SQL query to insert the rating into the video_ratings table
                     string sql = "INSERT INTO ratings (username, title, rating) VALUES (@username, @videoTitle, @rating)";
@@ -119,13 +125,14 @@ namespace VideoClip_Project
             }
         }
 
-        public void AddVideoClip(string videoTitle, string rating)
+     /*   public void AddVideoClip(string videoTitle, string rating)
         {
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connstring))
                 {
                     con.Open();
+
 
                     // SQL query to insert the rating into the video_ratings table
                     string sql = "INSERT INTO video_clips (title, averageRating) VALUES ( @videoTitle, @rating)";
@@ -150,14 +157,15 @@ namespace VideoClip_Project
                 // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
             }
         }
-
+*/
 
 
         private void BtnRate_Click(object sender, RoutedEventArgs e)
         {
             string stars = cbRating.Text;//posa asteria 
+            name_of_upload_video = InputDialog.videoTitle;
             AddRating(LogIn.username, stars, InputDialog.videoTitle);
-           // AddVideoClip(LogIn.username, InputDialog.videoTitle, stars);
+
             if (mediaElement.Source != null)
             {
                 VideoClip? currentVideo = videoClips.FirstOrDefault(v => v.Path == mediaElement.Source.LocalPath);
@@ -211,10 +219,50 @@ namespace VideoClip_Project
             }
         }
 
+        public void AddVideoClip(string videoTitle, string rating)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
+
+                    int ratingInt;
+                    if (!int.TryParse(rating, out ratingInt))
+                    {
+                        throw new ArgumentException("Invalid rating value");
+                    }
+
+                    // SQL query to insert the rating into the video_ratings table
+                    string sql = "INSERT INTO video_clips (title, averageRating) VALUES (@videoTitle, @rating)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Add parameters to the SQL query to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@rating", rating);
+                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
+
+                        // Execute the query
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
+            }
+        }
+
+
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            string stars2 = cbRating.Text;//posa asteria 
-            AddVideoClip(InputDialog.videoTitle, stars2);
+            //string stars2 = "0";
+            //stars = cbRating.Text;//posa asteria 
+            MessageBox.Show(stars.ToString());
+            AddVideoClip(name_of_upload_video, stars);
             
         }
 

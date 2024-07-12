@@ -85,8 +85,9 @@ namespace VideoClip_Project
                             var videoRating = new VideoRating
                             {
                                 Username = reader["username"].ToString(),
-                                Rating = Convert.ToInt32(reader["rating"]),
-                                VideoTitle = reader["title"].ToString()
+                                VideoTitle = reader["title"].ToString(),
+                                Rating = Convert.ToInt32(reader["rating"])
+                                
                             };
 
                             videoRatings.Add(videoRating);

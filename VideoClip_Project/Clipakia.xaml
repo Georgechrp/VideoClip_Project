@@ -11,15 +11,46 @@
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True">
+    <Window.Resources>
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF6200EE"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#FF6200EE"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF3700B3"/>
+                    <Setter Property="BorderBrush" Value="#FF3700B3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Border Background="#FF323045">
         <Grid>
             <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" FontWeight="Bold"/>
-            <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,58,0,0" />
+            <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,102,0,0" />
 
 
             <!-- Rating -->
-            <TextBlock Text="Rate this video:" FontSize="25" Height="45" Width="182" VerticalAlignment="Center" Margin="-80,0,0,0" Foreground="White"/>
-            <ComboBox Name="cbRating" FontSize="25" Height="45" Width="50" Margin="200,0,0,0" BorderBrush="#FFF60303" Foreground="#FF121212">
+            <TextBlock Text="Rate this video:" FontSize="25" Height="45" Width="182" VerticalAlignment="Top" Margin="535,123,203,0" Foreground="White"/>
+            <ComboBox Name="cbRating" FontSize="25" Height="45" Width="50" Margin="722,120,148,435" BorderBrush="#FFF60303" Foreground="#FF121212">
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#FFF0F0F0"/>
@@ -32,22 +63,22 @@
                 <ComboBoxItem Content="4" />
                 <ComboBoxItem Content="5" />
             </ComboBox>
-            <Button Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="400,0,0,0" Foreground="Black" Background="White" BorderBrush="Black"/>
+            <Button Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="747,184,51,371" Style="{StaticResource StyledButton}"/>
 
 
             <!-- Search Bar -->
 
-            <TextBox Name="txtSearch" Foreground="#FF84FF00" Height="45" Width="200" Margin="20,150,0,0"/>
-            <Button Name="btnSearch" FontSize="25" Height="45" Width="122" Content="Search" Click="BtnSearch_Click" Margin="400,150,0,0" Foreground="Black" Background="White" BorderBrush="#FF4DFF00"/>
+            <TextBox Name="txtSearch" Foreground="#FF84FF00" Height="45" Width="200" Margin="502,342,218,213"/>
+            <Button Name="btnSearch" FontSize="25" Height="45" Width="122" Content="Search" Click="BtnSearch_Click" Margin="747,342,51,213" Style="{StaticResource StyledButton}"/>
 
 
 
             <!-- Control Buttons -->
-            <Button Name="btnSave" FontSize="25" Content="Save" Height="44" Width="122" Click="BtnSave_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="107,427,0,0" Background="White"/>
-            <Button Name="btnDelete" FontSize="25" Content="Delete" Height="45" Width="122" Click="BtnDelete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="298,426,0,0" Background="White"/>
+            <Button Name="btnSave" FontSize="25" Content="Save" Height="44" Width="122" Click="BtnSave_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,320,0,0"  Style="{StaticResource StyledButton}"/>
+            <Button Name="btnDelete" FontSize="25" Content="Delete" Height="44" Width="122" Click="BtnDelete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,320,0,0" Style="{StaticResource StyledButton}"/>
 
             <!-- Search Results -->
-            <ListBox Name="lbResults" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="700" Height="100" Margin="5"/>
+            <ListBox Name="lbResults" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="700" Height="100" Margin="17,0,0,24"/>
         </Grid>
     </Border>
 </Window>
