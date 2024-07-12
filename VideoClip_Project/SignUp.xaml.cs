@@ -80,9 +80,12 @@ namespace VideoClip_Project
 
                 insertdata(fullname, username, email, phone, password);
 
-                Clipakia obgClipakia = new Clipakia();
+                MainWindow menu = new MainWindow();
                 this.Visibility = Visibility.Hidden;
-                obgClipakia.Show();
+               
+                menu.ButtonLogIn.Visibility = Visibility.Hidden;
+                menu.ButtonSignUp.Visibility = Visibility.Hidden;
+                menu.Show();
 
             }
             else

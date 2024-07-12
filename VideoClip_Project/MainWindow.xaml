@@ -92,15 +92,16 @@
     <Border Background="#272537">
         <Grid>
 
-            <Button Content="LogIn" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="750,34,0,0" VerticalAlignment="Top" Foreground="White" Background="Black" Height="45" Width="122" Click="BtnLogIn"/>
-            <Button Content="SignUp" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="600,34,0,0" VerticalAlignment="Top" Background="Black" Foreground="#FFFAFAFA" Height="45" Width="122" Click="BtnSignUp"/>
-            <Label Content="RateMyClip" FontSize="50" HorizontalAlignment="Left" Margin="66,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFFFF" FontWeight="Bold"/>
+            <Button x:Name="ButtonLogIn" Content="LogIn" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="750,34,0,0" VerticalAlignment="Top" Foreground="White" Background="Black" Height="45" Width="122" Click="BtnLogIn"/>
+            <Button x:Name="ButtonSignUp" Content="SignUp" FontSize="25" Cursor="Hand" HorizontalAlignment="Left" Margin="600,34,0,0" VerticalAlignment="Top" Background="Black" Foreground="#FFFAFAFA" Height="45" Width="122" Click="BtnSignUp"/>
+            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="66,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFFFF" FontWeight="Bold"/>
 
             <MediaElement x:Name="mediaElement" Width="464" Height="271" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,157,0,0" />
             <Button Content="Previous" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,436,0,0" Click="PreviousButton_Click"  Style="{StaticResource StyledButton}"/>
             <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" Style="{StaticResource StyledButton}" />
             <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,119,0,0" TextAlignment="Center" />
 
+            <Button Name="btnLoad" FontSize="25" Height="45" Content="Load Video" Click="BtnLoad_Click" Margin="568,514,166,41" Background="White" Foreground="Black" RenderTransformOrigin="0.489,2.001" Style="{StaticResource StyledButton}"/>
 
 
             <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0"

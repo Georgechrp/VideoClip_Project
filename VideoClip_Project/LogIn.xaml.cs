@@ -78,11 +78,12 @@ namespace VideoClip_Project
                 if (ValidateUser(username, password))
                 {
                     MessageBox.Show("Login successful!");
-                    Clipakia clipakia = new Clipakia();
+                    MainWindow menu = new MainWindow();
                     this.Visibility = Visibility.Hidden;
-                    clipakia.Left = 100;
-                    clipakia.Top = 100;
-                    clipakia.Show();
+                    
+                    menu.ButtonLogIn.Visibility = Visibility.Hidden;
+                    menu.ButtonSignUp.Visibility = Visibility.Hidden;
+                    menu.Show();
                 }
                 else
                 {

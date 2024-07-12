@@ -13,7 +13,7 @@ Background="Transparent"
 AllowsTransparency="True">
     <Border Background="#FF323045">
         <Grid>
-            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
+            <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" FontWeight="Bold"/>
             <Label Content="Video Title:" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,196,0,0" Foreground="White"/>
             <TextBox Name="txtResponse" Text="Πληκτρολογήστε το όνομα του video clip σας" GotFocus="txtResponse_GotFocus" LostFocus="txtResponse_LostFocus" Foreground="Gray" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,205,0,0" Height="25" Width="260"/>
             <Button Content="OK" FontSize="25" Width="100" Height="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,430,275" Click="OK_Click" Background="White"/>

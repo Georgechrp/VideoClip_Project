@@ -13,7 +13,7 @@
         AllowsTransparency="True">
     <Border Background="#272537">
         <Grid>
-            <Label Content="Clipakia" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" Foreground="#FFFF9300" FontWeight="Bold"/>
+            <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" FontWeight="Bold"/>
             <Label Content="Sign Up Page" FontSize="35" HorizontalAlignment="Center" Margin="0,68,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Full Name" FontSize="20" HorizontalAlignment="Left" Margin="235,150,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label Content="Username" FontSize="20" HorizontalAlignment="Left" Margin="235,200,0,0" VerticalAlignment="Top" Foreground="White"/>

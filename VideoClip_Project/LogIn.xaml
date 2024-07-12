@@ -22,7 +22,7 @@
             <Button FontSize="20" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Height="49" Width="180" BorderBrush="#FF3FE218" Foreground="Black" Background="#FF2BDF00" Click="BtnConnect" FontWeight="Bold">
             <Label Content="LOGIN "/>
             </Button>
-            <Label Content="RateMyClip" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345"  FontWeight="Bold"/>
+            <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345"  FontWeight="Bold"/>
 
         </Grid>
     </Border>

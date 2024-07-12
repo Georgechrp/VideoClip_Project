@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
@@ -25,7 +26,7 @@ namespace VideoClip_Project
         private ObservableCollection<VideoClip> videoClips = new ObservableCollection<VideoClip>();
         private string[] videoFiles = { };
         private int currentIndex = 0;
-
+        private const string SaveFilePath = "videoClips.json"; 
         public MainWindow()
         {
             InitializeComponent();
@@ -64,8 +65,6 @@ namespace VideoClip_Project
             // Δημιουργούμε μια λίστα για τα αστέρια
             public List<int> Stars => Enumerable.Range(1, (int)Math.Round(AverageRating)).ToList();
         }
-
-
 
         public static List<VideoRating> GetVideoRatings()
         {
@@ -162,6 +161,59 @@ namespace VideoClip_Project
             obgSignUp.Top = SystemParameters.PrimaryScreenHeight - obgSignUp.Height;
 
             obgSignUp.Show();
+        }
+
+
+
+        private void SaveVideoClips()
+        {
+            var json = JsonConvert.SerializeObject(videoClips, Formatting.Indented);
+            File.WriteAllText(SaveFilePath, json);
+        }
+
+
+        private string PromptForTitle()
+        {
+            InputDialog inputDialog = new InputDialog("Enter video title:");
+            if (inputDialog.ShowDialog() == true)
+            {
+                return inputDialog.ResponseText;
+            }
+            return string.Empty;
+        }
+
+        private void BtnLoad_Click(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Video Files|*.mp4;*.avi;*.wmv;*.mov"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                mediaElement.Source = new Uri(filePath);
+
+                // Prompt user for the video title
+                string videoTitle = PromptForTitle();
+                if (!string.IsNullOrEmpty(videoTitle))
+                {
+                    // Add video to the list
+                    VideoClip video = new VideoClip
+                    {
+                        Title = videoTitle,
+                        Path = filePath,
+                        Rating = 0
+                    };
+                    videoClips.Add(video);
+                    SaveVideoClips();
+                }
+                else
+                {
+                    MessageBox.Show("Video title cannot be empty.");
+                }
+            }
         }
     }
 }
