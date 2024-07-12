@@ -96,7 +96,7 @@ namespace VideoClip_Project
                     con.Open();
 
                     // SQL query to insert the rating into the video_ratings table
-                    string sql = "INSERT INTO ratings (username, rating, video_title) VALUES (@username, @rating, @videoTitle)";
+                    string sql = "INSERT INTO ratings (username, title, rating) VALUES (@username, @videoTitle, @rating)";
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, con))
                     {
@@ -110,7 +110,39 @@ namespace VideoClip_Project
                     }
                     con.Close();
                 }
-                
+
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
+            }
+        }
+
+        public void AddVideoClip(string videoTitle, string rating)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
+
+                    // SQL query to insert the rating into the video_ratings table
+                    string sql = "INSERT INTO video_clips (title, averageRating) VALUES ( @videoTitle, @rating)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Add parameters to the SQL query to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
+                        cmd.Parameters.AddWithValue("@rating", rating);
+                        
+
+                        // Execute the query
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+
             }
             catch (MySqlException ex)
             {
@@ -120,11 +152,12 @@ namespace VideoClip_Project
         }
 
 
+
         private void BtnRate_Click(object sender, RoutedEventArgs e)
         {
             string stars = cbRating.Text;//posa asteria 
             AddRating(LogIn.username, stars, InputDialog.videoTitle);
-           
+           // AddVideoClip(LogIn.username, InputDialog.videoTitle, stars);
             if (mediaElement.Source != null)
             {
                 VideoClip? currentVideo = videoClips.FirstOrDefault(v => v.Path == mediaElement.Source.LocalPath);
@@ -180,31 +213,9 @@ namespace VideoClip_Project
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (mediaElement.Source != null)
-            {
-                string videoTitle = PromptForTitle();
-                if (!string.IsNullOrEmpty(videoTitle))
-                {
-                    VideoClip newVideoClip = new VideoClip
-                    {
-                        Title = videoTitle,
-                        Path = mediaElement.Source.LocalPath,
-                        Rating = 0 // Default rating, can be updated later
-                    };
-
-                    videoClips.Add(newVideoClip);
-                    SaveVideoClips();
-                    MessageBox.Show("Video clip saved successfully.");
-                }
-                else
-                {
-                    MessageBox.Show("Video title cannot be empty.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("No video clip to save.");
-            }
+            string stars2 = cbRating.Text;//posa asteria 
+            AddVideoClip(InputDialog.videoTitle, stars2);
+            
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

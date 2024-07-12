@@ -75,7 +75,7 @@ namespace VideoClip_Project
             {
                 con.Open();
 
-                string sql = "SELECT username, rating, video_title FROM ratings";
+                string sql = "SELECT username, title, rating FROM ratings";
                 using (var cmd = new MySqlCommand(sql, con))
                 {
                     using (var reader = cmd.ExecuteReader())
@@ -86,7 +86,7 @@ namespace VideoClip_Project
                             {
                                 Username = reader["username"].ToString(),
                                 Rating = Convert.ToInt32(reader["rating"]),
-                                VideoTitle = reader["video_title"].ToString()
+                                VideoTitle = reader["title"].ToString()
                             };
 
                             videoRatings.Add(videoRating);

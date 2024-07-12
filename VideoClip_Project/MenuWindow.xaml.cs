@@ -45,6 +45,9 @@ namespace VideoClip_Project
         {
             MainWindow mainWindow = new MainWindow();
             this.Visibility = Visibility.Hidden;
+            
+            mainWindow.ButtonLogIn.Visibility = Visibility.Hidden;
+            mainWindow.ButtonSignUp.Visibility = Visibility.Hidden;
             mainWindow.Show();
         }
     }
