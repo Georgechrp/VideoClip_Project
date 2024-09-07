@@ -19,6 +19,8 @@ namespace VideoClip_Project
 {
     public partial class SignUp : Window
     {
+        
+
         public SignUp()
         {
             InitializeComponent();
@@ -93,8 +95,6 @@ namespace VideoClip_Project
         //go to login
         private void LinkTextBlock_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            // Αντικατέστησε τη διεύθυνση URL με την πραγματική σελίδα που θέλεις να ανοίξει ο χρήστης
-            //Process.Start(new ProcessStartInfo("https://www.example.com") { UseShellExecute = true });
             LogIn login = new LogIn();
             this.Visibility = Visibility.Hidden;
             login.Show();
@@ -182,6 +182,13 @@ namespace VideoClip_Project
                // Password.Foreground = new SolidColorBrush(Colors.Black);
             }
             
+        }
+
+        private void GotoMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainWindow.Show();
         }
     }
 }

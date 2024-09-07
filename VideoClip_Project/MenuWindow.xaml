@@ -44,5 +44,6 @@
             <Button Content="Discover other video clips" Width="200" Height="50" Style="{StaticResource StyledButton}" Click="DiscoverVideosButton_Click"/>
         </StackPanel>
         <Button Content="Load Video" Style="{StaticResource StyledButton}" Click="LoadVideoButton_Click" Margin="300,89,300,295"/>
+        <Button Content="Discover other video clips" Style="{StaticResource StyledButton}" Click="GotoMainButton_Click" Margin="300,280,300,104"/>
     </Grid>
 </Window>

@@ -130,6 +130,25 @@
                     <StaticResource ResourceKey="StyledListBoxItem"/>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+            <TextBlock x:Name="RateThisVideo" Text="Rate this video:" FontSize="25" Height="45" Width="182" VerticalAlignment="Top" Margin="66,501,672,0" Foreground="White"/>
+            <ComboBox x:Name="cbRating" FontSize="25" Height="45" Width="50" Margin="273,501,597,54" BorderBrush="#FFF60303" Foreground="#FF121212">
+                <ComboBox.Background >
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+                <ComboBoxItem Content="1" />
+                <ComboBoxItem Content="2" />
+                <ComboBoxItem Content="3" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="5" />
+            </ComboBox>
+            <Button x:Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="358,501,440,54" Style="{StaticResource StyledButton}"/>
+
+
+
+
         </Grid>
     </Border>
 

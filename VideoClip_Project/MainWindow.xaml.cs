@@ -26,13 +26,20 @@ namespace VideoClip_Project
         private ObservableCollection<VideoClip> videoClips = new ObservableCollection<VideoClip>();
         private string[] videoFiles = { };
         private int currentIndex = 0;
-        private const string SaveFilePath = "videoClips.json"; 
+        private const string SaveFilePath = "videoClips.json";
+        private string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
         public MainWindow()
         {
             InitializeComponent();
             LoadVideoFiles();
             DisplayCurrentVideo();
             LoadAndBindData();
+
+
+            RateThisVideo.Visibility = Visibility.Hidden;
+            cbRating.Visibility = Visibility.Hidden;
+            btnRate.Visibility = Visibility.Hidden;
+
         }
 
 
@@ -163,11 +170,52 @@ namespace VideoClip_Project
 
             obgSignUp.Show();
         }
+        public void AddRating(string username, string rating, string videoTitle)
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
 
+                    int ratingInt;
+                    if (!int.TryParse(rating, out ratingInt))
+                    {
+                        throw new ArgumentException("Invalid rating value");
+                    }
 
+                    // SQL query to insert the rating into the video_ratings table
+                    string sql = "INSERT INTO ratings (username, title, rating) VALUES (@username, @videoTitle, @rating)";
 
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Add parameters to the SQL query to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@rating", rating);
+                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
 
+                        // Execute the query
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
 
-      
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
+            }
+            
+        }
+        private void BtnRate_Click(object sender, RoutedEventArgs e)
+        {
+            string stars = cbRating.Text;//posa asteria 
+            //name_of_upload_video = videoNameTextBlock.Text;
+            AddRating(LogIn.username, stars, videoNameTextBlock.Text);
+            MessageBox.Show($"Rated {videoNameTextBlock.Text} with {stars} stars.");
+            
+
+        }
     }
 }

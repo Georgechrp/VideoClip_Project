@@ -288,6 +288,13 @@ namespace VideoClip_Project
                 MessageBox.Show("No video clip to delete.");
             }
         }
+
+        private void GotoMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainWindow.Show();
+        }
     }
 }
 

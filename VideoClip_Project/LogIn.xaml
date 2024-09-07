@@ -23,6 +23,7 @@
             <Label Content="LOGIN "/>
             </Button>
             <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345"  FontWeight="Bold"/>
+            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
 
         </Grid>
     </Border>

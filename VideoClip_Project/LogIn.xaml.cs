@@ -76,11 +76,11 @@ namespace VideoClip_Project
 
                 if (ValidateUser(username, password))
                 {
-                    MessageBox.Show("Login successful!");
+                    MessageBox.Show("Welcome " + username + "!", "Succesfull");
                     MenuWindow menu = new MenuWindow();
                     this.Visibility = Visibility.Hidden;
                     menu.Show();
-
+                    
                 }
                 else
                 {
@@ -142,6 +142,11 @@ namespace VideoClip_Project
             
         }
 
-       
+        private void GotoMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainWindow.Show();
+        }
     }
 }

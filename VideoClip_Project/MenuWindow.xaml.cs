@@ -50,5 +50,22 @@ namespace VideoClip_Project
             mainWindow.ButtonSignUp.Visibility = Visibility.Hidden;
             mainWindow.Show();
         }
+
+        private void GotoMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainWindow.Show();
+
+            //RateThisVideo.Visibility = Visibility.Hidden;
+            //cbRating.Visibility = Visibility.Hidden;
+            // btnRate.Visibility = Visibility.Hidden;
+            mainWindow.RateThisVideo.Visibility = Visibility.Visible;
+            mainWindow.cbRating.Visibility = Visibility.Visible;
+            mainWindow.btnRate.Visibility = Visibility.Visible;
+
+            mainWindow.ButtonLogIn.Visibility = Visibility.Hidden;
+            mainWindow.ButtonSignUp.Visibility = Visibility.Hidden;
+        }
     }
 }

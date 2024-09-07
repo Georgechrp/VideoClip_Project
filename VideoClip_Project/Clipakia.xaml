@@ -79,6 +79,7 @@
 
             <!-- Search Results -->
             <ListBox Name="lbResults" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="700" Height="100" Margin="17,0,0,24"/>
+            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
         </Grid>
     </Border>
 </Window>
