@@ -23,7 +23,12 @@
             <Label Content="LOGIN "/>
             </Button>
             <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345"  FontWeight="Bold"/>
-            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512" Cursor="Hand"/>
+            <Button Height="50" Margin="25,20,850,530" Click="Button_Click"
+        Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/back.png" Width="20" Height="20" />
+                </StackPanel>
+            </Button>
 
         </Grid>
     </Border>

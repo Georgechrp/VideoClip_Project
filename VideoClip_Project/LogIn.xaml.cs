@@ -22,7 +22,7 @@ namespace VideoClip_Project
     /// </summary>
     public partial class LogIn : Window
     {
-        public static string username = "";
+        //public static string username = "";
         public LogIn()
         {
             InitializeComponent();
@@ -71,11 +71,13 @@ namespace VideoClip_Project
         {
             if (Username.Text != string.Empty && Password.Password != string.Empty)
             {
-                username = Username.Text;
+                string username = Username.Text;
                 string password = Password.Password;
 
                 if (ValidateUser(username, password))
                 {
+                    UserSession.Username = username;
+
                     MessageBox.Show("Welcome " + username + "!", "Succesfull");
                     MenuWindow menu = new MenuWindow();
                     this.Visibility = Visibility.Hidden;
@@ -143,6 +145,13 @@ namespace VideoClip_Project
         }
 
         private void GotoMainButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainWindow.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             this.Visibility = Visibility.Hidden;

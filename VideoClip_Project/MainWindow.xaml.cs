@@ -39,7 +39,15 @@ namespace VideoClip_Project
             RateThisVideo.Visibility = Visibility.Hidden;
             cbRating.Visibility = Visibility.Hidden;
             btnRate.Visibility = Visibility.Hidden;
-
+            if(UserSession.Username == string.Empty)
+            {
+                LogOut.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                cbRating.Visibility = Visibility.Visible;
+            }
+            
         }
 
 
@@ -212,10 +220,24 @@ namespace VideoClip_Project
         {
             string stars = cbRating.Text;//posa asteria 
             //name_of_upload_video = videoNameTextBlock.Text;
-            AddRating(LogIn.username, stars, videoNameTextBlock.Text);
+            AddRating(UserSession.Username, stars, videoNameTextBlock.Text);
             MessageBox.Show($"Rated {videoNameTextBlock.Text} with {stars} stars.");
             
+            
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UserSession.Username = string.Empty;
+            ButtonLogIn.Visibility = Visibility.Visible;
+            ButtonSignUp.Visibility = Visibility.Visible;
+
+            RateThisVideo.Visibility = Visibility.Hidden;
+            cbRating.Visibility = Visibility.Hidden;
+            btnRate.Visibility = Visibility.Hidden;
+
+            MessageBox.Show("Log Out Succesfully");
         }
     }
 }

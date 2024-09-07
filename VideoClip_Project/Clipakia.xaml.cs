@@ -29,11 +29,15 @@ namespace VideoClip_Project
         private const string SaveFilePath = "videoClips.json";
         static string stars = "2";
         static string name_of_upload_video = "";
+        string videoTitle;
+        string filePath;
         public Clipakia()
         {
             InitializeComponent();
             LoadVideoButton_Click();
-            name_of_upload_video = InputDialog.videoTitle;
+            //name_of_upload_video = InputDialog.videoTitle;
+            videoNameTextBlock.Text = UserSession.Username;
+            
         }
 
         private void LoadVideoButton_Click()
@@ -45,11 +49,12 @@ namespace VideoClip_Project
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string filePath = openFileDialog.FileName;
+                filePath = openFileDialog.FileName;
                 mediaElement.Source = new Uri(filePath);
 
                 // Prompt user for the video title
-                string videoTitle = filePath.Substring(0, filePath.Length - 4);    //PromptForTitle();
+                videoTitle = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                //videoTitle = filePath.Substring(0, filePath.Length - 4);    //PromptForTitle();
                 if (!string.IsNullOrEmpty(videoTitle))
                 {
                     // Add video to the list
@@ -172,12 +177,81 @@ namespace VideoClip_Project
                 // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
             }
         }
+        private void insertClipInDatabase(string title, int averageRating)
+        {
+            try
+            {
+                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
+                    // SQL query to insert data into the 'user' table
+                    string sql = "INSERT INTO video_clips (title, averageRating) VALUES (@title, @averageRating)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Add parameters to the SQL query to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@title", title);
+                        cmd.Parameters.AddWithValue("@averageRating", averageRating);
 
 
+                        // Execute the query
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Display a message box to show the result
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Video" + videoTitle + "inserted Successfully");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data insertion failed.");
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                Console.Write(ex.ToString());
+            }
+        }
+
+        private void SaveVideoToFolder(string filePath)
+        {
+            try
+            {
+                // Προορισμός: Φάκελος 'Videos' μέσα στο project
+                string destinationFolder = "C:\\Users\\georg\\GITHUB PROJECTS\\VideoClip_Project\\videos";
+
+                // Δημιουργείς το φάκελο αν δεν υπάρχει
+                if (!Directory.Exists(destinationFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+
+                // Παίρνεις το όνομα και την επέκταση του αρχείου (π.χ., my_video.mp4)
+                string fileName = System.IO.Path.GetFileName("C:\\Users\\georg\\Downloads\\" + videoTitle + ".mp4");
+
+                // Ο πλήρης προορισμός, δηλαδή που θα αντιγραφεί το αρχείο
+                string destinationPath = System.IO.Path.Combine(destinationFolder, fileName);
+
+                // Αντιγράφεις το αρχείο από το source (filePath) στον προορισμό (destinationPath)
+                File.Copy(filePath, destinationPath, true);  // true = αντικαθιστά το αρχείο αν υπάρχει ήδη
+
+                MessageBox.Show("Το βίντεο αποθηκεύτηκε επιτυχώς στον φάκελο: " + destinationFolder);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Αποτυχία αποθήκευσης του βίντεο: " + ex.Message);
+            }
+        }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-           // AddVideoClip(name_of_upload_video, "0");
-            
+            //AddVideoClip(name_of_upload_video, "0");
+            SaveVideoToFolder(filePath);
+            insertClipInDatabase(videoTitle, 0);
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

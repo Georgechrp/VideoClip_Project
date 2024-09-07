@@ -23,7 +23,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Cursor" Value="Hand"/>
             <!-- Προσθήκη κέρσορα χεριού -->
-                <Setter Property="Template">
+            <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
@@ -53,18 +53,19 @@
 
             <!-- Search Bar -->
 
-            <TextBox Name="txtSearch" Foreground="#FF84FF00" Height="45" Width="200" Margin="502,342,218,213"/>
-            <Button Name="btnSearch" FontSize="25" Height="45" Width="122" Content="Search" Click="BtnSearch_Click" Margin="747,342,51,213" Style="{StaticResource StyledButton}"/>
+            <TextBox Name="txtSearch" Foreground="#FF84FF00" Margin="17,410,602,158"/>
+            <Button Name="btnSearch" FontSize="25" Content="Search" Click="BtnSearch_Click" Margin="338,404,489,158" Style="{StaticResource StyledButton}"/>
 
 
 
             <!-- Control Buttons -->
-            <Button Name="btnSave" FontSize="25" Content="Save" Height="44" Width="122" Click="BtnSave_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,320,0,0"  Style="{StaticResource StyledButton}"/>
-            <Button Name="btnDelete" FontSize="25" Content="Delete" Height="44" Width="122" Click="BtnDelete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,320,0,0" Style="{StaticResource StyledButton}"/>
+            <Button Name="btnSave" FontSize="25" Content="Save" Height="44" Width="122" Click="BtnSave_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="515,102,0,0"  Style="{StaticResource StyledButton}"/>
+            <Button Name="btnDelete" FontSize="25" Content="Delete" Height="44" Width="122" Click="BtnDelete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="515,181,0,0" Style="{StaticResource StyledButton}"/>
 
             <!-- Search Results -->
             <ListBox Name="lbResults" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="700" Height="100" Margin="17,0,0,24"/>
             <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
+            <TextBlock x:Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="244" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="666,0,0,0" TextAlignment="Center" />
         </Grid>
     </Border>
 </Window>

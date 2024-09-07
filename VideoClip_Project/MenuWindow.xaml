@@ -21,7 +21,7 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
 
-                    <Setter.Value>
+                <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
                             Background="{TemplateBinding Background}" 
@@ -45,5 +45,13 @@
     <Grid Background="#272537">
         <Button Content="Load Video" Style="{StaticResource StyledButton}" Click="LoadVideoButton_Click" Margin="300,89,300,295"/>
         <Button Content="Discover other video clips" Style="{StaticResource StyledButton}" Click="GotoMainButton_Click" Margin="300,167,300,217"/>
+        <TextBlock x:Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="244" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="546,0,0,0" TextAlignment="Center" />
+        <Button Height="50" Margin="29,10,726,364" Click="Button_Click"
+        Background="Transparent" BorderThickness="0" Padding="0" Cursor="Hand">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/back.png" Width="20" Height="20" />
+            </StackPanel>
+        </Button>
+
     </Grid>
 </Window>

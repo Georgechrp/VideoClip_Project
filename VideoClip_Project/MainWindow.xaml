@@ -23,7 +23,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Cursor" Value="Hand"/>
             <!-- Προσθήκη κέρσορα χεριού -->
-                <Setter Property="Template">
+            <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
@@ -90,7 +90,7 @@
         </Style>
 
     </Window.Resources>
-    
+
     <Border Background="#272537">
         <Grid>
 
@@ -103,7 +103,7 @@
             <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" Style="{StaticResource StyledButton}" />
             <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,119,0,0" TextAlignment="Center" />
 
-         
+
             <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0"
                      Style="{StaticResource StyledListBox}">
                 <ListBox.ItemTemplate>
@@ -148,6 +148,11 @@
             </ComboBox>
             <Button x:Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="358,501,440,54" Style="{StaticResource StyledButton}"/>
 
+            <Button x:Name="LogOut"  Height="50" Margin="0,0,875,550" Click="Button_Click" Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="logout.png" Width="20" Height="20" />
+                </StackPanel>
+            </Button>
 
 
 

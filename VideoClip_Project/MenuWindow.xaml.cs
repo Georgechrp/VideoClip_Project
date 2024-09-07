@@ -29,6 +29,7 @@ namespace VideoClip_Project
         public MenuWindow()
         {
             InitializeComponent();
+            videoNameTextBlock.Text = UserSession.Username;
         }
 
 
@@ -64,6 +65,13 @@ namespace VideoClip_Project
 
             mainWindow.ButtonLogIn.Visibility = Visibility.Hidden;
             mainWindow.ButtonSignUp.Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LogIn logIn = new LogIn();
+            this.Visibility = Visibility.Hidden;
+            logIn.Show();
         }
     }
 }
