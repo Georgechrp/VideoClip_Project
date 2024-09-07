@@ -17,8 +17,11 @@
             <Setter Property="Padding" Value="10"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
-                <Setter.Value>
+
+                    <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
                             Background="{TemplateBinding Background}" 
@@ -40,10 +43,7 @@
     </Window.Resources>
 
     <Grid Background="#272537">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Discover other video clips" Width="200" Height="50" Style="{StaticResource StyledButton}" Click="DiscoverVideosButton_Click"/>
-        </StackPanel>
         <Button Content="Load Video" Style="{StaticResource StyledButton}" Click="LoadVideoButton_Click" Margin="300,89,300,295"/>
-        <Button Content="Discover other video clips" Style="{StaticResource StyledButton}" Click="GotoMainButton_Click" Margin="300,280,300,104"/>
+        <Button Content="Discover other video clips" Style="{StaticResource StyledButton}" Click="GotoMainButton_Click" Margin="300,167,300,217"/>
     </Grid>
 </Window>

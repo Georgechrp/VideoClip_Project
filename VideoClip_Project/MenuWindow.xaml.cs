@@ -37,8 +37,6 @@ namespace VideoClip_Project
             Clipakia clip = new Clipakia();
             this.Visibility = Visibility.Hidden;
             clip.Show();
-
-
         }
 
         private void DiscoverVideosButton_Click(object sender, RoutedEventArgs e)

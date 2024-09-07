@@ -121,90 +121,7 @@ namespace VideoClip_Project
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.ToString());
-                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
-            }
-        }
 
-     /*   public void AddVideoClip(string videoTitle, string rating)
-        {
-            try
-            {
-                using (MySqlConnection con = new MySqlConnection(connstring))
-                {
-                    con.Open();
-
-
-                    // SQL query to insert the rating into the video_ratings table
-                    string sql = "INSERT INTO video_clips (title, averageRating) VALUES ( @videoTitle, @rating)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
-                    {
-                        // Add parameters to the SQL query to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
-                        cmd.Parameters.AddWithValue("@rating", rating);
-                        
-
-                        // Execute the query
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
-            }
-        }
-*/
-
-
-        private void BtnRate_Click(object sender, RoutedEventArgs e)
-        {
-            string stars = cbRating.Text;//posa asteria 
-            name_of_upload_video = InputDialog.videoTitle;
-            AddRating(LogIn.username, stars, InputDialog.videoTitle);
-
-            if (mediaElement.Source != null)
-            {
-                VideoClip? currentVideo = videoClips.FirstOrDefault(v => v.Path == mediaElement.Source.LocalPath);
-                if (currentVideo != null)
-                {
-                    if (cbRating.SelectedItem is ComboBoxItem selectedRating && selectedRating.Content != null)
-                    {
-                        string? ratingString = selectedRating.Content.ToString();
-                        if (!string.IsNullOrEmpty(ratingString))
-                        {
-                            if (int.TryParse(ratingString, out int rating))
-                            {
-                                currentVideo.Rating = rating;
-                                SaveVideoClips();
-                                MessageBox.Show($"Rated {currentVideo.Title} with {currentVideo.Rating} stars.");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Invalid rating selected.");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Rating content is null or empty.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select a rating.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No video clip found for the current media element source.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Media element source is null.");
             }
         }
 
@@ -259,10 +176,7 @@ namespace VideoClip_Project
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //string stars2 = "0";
-            //stars = cbRating.Text;//posa asteria 
-            MessageBox.Show(stars.ToString());
-            AddVideoClip(name_of_upload_video, stars);
+           // AddVideoClip(name_of_upload_video, "0");
             
         }
 
@@ -291,9 +205,9 @@ namespace VideoClip_Project
 
         private void GotoMainButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MenuWindow menuWindow = new MenuWindow();
             this.Visibility = Visibility.Hidden;
-            mainWindow.Show();
+            menuWindow.Show();
         }
     }
 }

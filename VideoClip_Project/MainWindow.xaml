@@ -21,7 +21,9 @@
             <Setter Property="Padding" Value="5"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
+            <Setter Property="Cursor" Value="Hand"/>
+            <!-- Προσθήκη κέρσορα χεριού -->
+                <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 

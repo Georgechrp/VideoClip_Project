@@ -19,11 +19,11 @@
             <TextBox x:Name="Username" Text="Όνομα χρήστη(username)" GotFocus="Username_GotFocus" LostFocus="Username_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="37"/>
             <PasswordBox x:Name="Password" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus" HorizontalAlignment="Center" Margin="0,263,0,0" VerticalAlignment="Top" Width="180" Height="37"/>
             <Label Name="LinkTextBlock"  Foreground="Blue" Cursor="Hand" HorizontalAlignment="Left" Margin="370,305,0,0" MouseLeftButtonDown="LinkTextBlock_MouseLeftButtonDown" Content="Είστε νέος χρήστης;" VerticalAlignment="Top" Width="120"/>
-            <Button FontSize="20" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Height="49" Width="180" BorderBrush="#FF3FE218" Foreground="Black" Background="#FF2BDF00" Click="BtnConnect" FontWeight="Bold">
+            <Button FontSize="20" HorizontalAlignment="Center" Margin="0,363,0,0" VerticalAlignment="Top" Height="49" Width="180" BorderBrush="#FF3FE218" Foreground="Black" Background="#FF2BDF00" Click="BtnConnect" FontWeight="Bold" Cursor="Hand">
             <Label Content="LOGIN "/>
             </Button>
             <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345"  FontWeight="Bold"/>
-            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
+            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512" Cursor="Hand"/>
 
         </Grid>
     </Border>

@@ -27,9 +27,9 @@
             <TextBox x:Name="Email" Text="Email" GotFocus="Email_GotFocus" LostFocus="Email_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="37"/>
             <TextBox x:Name="Phone" Text="Phone" GotFocus="Phone_GotFocus" LostFocus="Phone_LostFocus" Foreground="Gray" HorizontalAlignment="Center" Margin="0,300,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="181" Height="37"/>
             <PasswordBox x:Name="Password" GotFocus="Password_GotFocus" HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="180" Height="37"/>
-            <Button Content="SignUp" FontSize="20" HorizontalAlignment="Center" Margin="0,443,0,0" VerticalAlignment="Top" Background="#FF57FF01" Height="49" Width="180" FontWeight="Bold" Click="BtnSignUp"/>
+            <Button Content="SignUp" FontSize="20" HorizontalAlignment="Center" Margin="0,443,0,0" VerticalAlignment="Top" Background="#FF57FF01" Height="49" Width="180" FontWeight="Bold" Click="BtnSignUp" Cursor="Hand"/>
             <Label Name="LinkTextBlock" Foreground="Blue" Cursor="Hand" HorizontalAlignment="Left" Margin="370,392,0,0" MouseLeftButtonDown="LinkTextBlock_MouseLeftButtonDown" Content="Είστε ήδη χρήστης;" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
+            <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512" Cursor="Hand"/>
         </Grid>
     </Border>
 </Window>

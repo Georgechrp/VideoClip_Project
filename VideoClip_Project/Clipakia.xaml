@@ -21,7 +21,9 @@
             <Setter Property="Padding" Value="10"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
+            <Setter Property="Cursor" Value="Hand"/>
+            <!-- Προσθήκη κέρσορα χεριού -->
+                <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border 
@@ -47,23 +49,6 @@
             <Label Content="Clipakia" Foreground="#FFFFFF" FontSize="50" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.169,-0.345" FontWeight="Bold"/>
             <MediaElement Name="mediaElement" Width="400" Height="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,102,0,0" />
 
-
-            <!-- Rating -->
-            <TextBlock Text="Rate this video:" FontSize="25" Height="45" Width="182" VerticalAlignment="Top" Margin="535,123,203,0" Foreground="White"/>
-            <ComboBox Name="cbRating" FontSize="25" Height="45" Width="50" Margin="722,120,148,435" BorderBrush="#FFF60303" Foreground="#FF121212">
-                <ComboBox.Background>
-                    <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Color="#FFF0F0F0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </ComboBox.Background>
-                <ComboBoxItem Content="1" />
-                <ComboBoxItem Content="2" />
-                <ComboBoxItem Content="3" />
-                <ComboBoxItem Content="4" />
-                <ComboBoxItem Content="5" />
-            </ComboBox>
-            <Button Name="btnRate" FontSize="25" Height="45" Width="122" Content="Rate" Click="BtnRate_Click" Margin="747,184,51,371" Style="{StaticResource StyledButton}"/>
 
 
             <!-- Search Bar -->
