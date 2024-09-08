@@ -42,10 +42,13 @@ namespace VideoClip_Project
             if(UserSession.Username == string.Empty)
             {
                 LogOut.Visibility = Visibility.Hidden;
+                videoNameTextBlock_Copy.Visibility = Visibility.Hidden;
             }
             else
             {
                 cbRating.Visibility = Visibility.Visible;
+                videoNameTextBlock_Copy.Visibility = Visibility.Visible;
+                videoNameTextBlock_Copy.Text = UserSession.Username;
             }
             
         }
@@ -236,7 +239,7 @@ namespace VideoClip_Project
             RateThisVideo.Visibility = Visibility.Hidden;
             cbRating.Visibility = Visibility.Hidden;
             btnRate.Visibility = Visibility.Hidden;
-
+            videoNameTextBlock_Copy.Visibility = Visibility.Hidden;
             MessageBox.Show("Log Out Succesfully");
         }
 

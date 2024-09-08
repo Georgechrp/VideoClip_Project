@@ -81,9 +81,13 @@ namespace VideoClip_Project
 
                 insertdata(fullname, username, email, phone, password);
 
-                MenuWindow menu = new MenuWindow();
+                //MenuWindow menu = new MenuWindow();
+                //this.Visibility = Visibility.Hidden;
+                //menu.Show();
+
+                LogIn login=new LogIn();
                 this.Visibility = Visibility.Hidden;
-                menu.Show();
+                login.Show();
                 
             }
             else

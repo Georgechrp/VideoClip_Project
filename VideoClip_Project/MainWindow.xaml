@@ -156,6 +156,7 @@
             <TextBox x:Name="txtSearch" Foreground="#FF84FF00" Margin="576,399,145,179"/>
             <Button x:Name="btnSearch" FontSize="25" Content="Search" Click="BtnSearch_Click" Margin="780,391,48,171" Style="{StaticResource StyledButton}"/>
             <ListBox x:Name="lbResults" SelectionChanged="lbResults_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="296" Height="70" Margin="576,0,0,74"/>
+            <TextBlock x:Name="videoNameTextBlock_Copy" FontSize="25" Foreground="Gray" Width="244" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="676,-2,0,0" TextAlignment="Center" />
 
 
 
