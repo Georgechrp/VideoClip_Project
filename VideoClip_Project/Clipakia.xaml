@@ -53,9 +53,6 @@
 
             <!-- Search Bar -->
 
-            <TextBox Name="txtSearch" Foreground="#FF84FF00" Margin="17,410,602,158"/>
-            <Button Name="btnSearch" FontSize="25" Content="Search" Click="BtnSearch_Click" Margin="338,404,489,158" Style="{StaticResource StyledButton}"/>
-
 
 
             <!-- Control Buttons -->
@@ -63,7 +60,6 @@
             <Button Name="btnDelete" FontSize="25" Content="Delete" Height="44" Width="122" Click="BtnDelete_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="515,181,0,0" Style="{StaticResource StyledButton}"/>
 
             <!-- Search Results -->
-            <ListBox Name="lbResults" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="700" Height="100" Margin="17,0,0,24"/>
             <Button Content="Go Back" Click="GotoMainButton_Click" Margin="790,38,52,512"/>
             <TextBlock x:Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="244" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="666,0,0,0" TextAlignment="Center" />
         </Grid>

@@ -101,7 +101,7 @@
             <MediaElement x:Name="mediaElement" Width="464" Height="271" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,157,0,0" />
             <Button Content="Previous" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,436,0,0" Click="PreviousButton_Click"  Style="{StaticResource StyledButton}"/>
             <Button Content="Next" Cursor="Hand" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="430,436,0,0" Click="NextButton_Click" Style="{StaticResource StyledButton}" />
-            <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,119,0,0" TextAlignment="Center" />
+            <TextBlock Name="videoNameTextBlock" FontSize="25" Foreground="Gray" Width="464" Height="47" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="66,102,0,0" TextAlignment="Center" />
 
 
             <ListBox x:Name="videoListBox" HorizontalAlignment="Left" Height="332" VerticalAlignment="Top" Width="310" Margin="600,119,0,0"
@@ -153,6 +153,9 @@
                     <Image Source="logout.png" Width="20" Height="20" />
                 </StackPanel>
             </Button>
+            <TextBox x:Name="txtSearch" Foreground="#FF84FF00" Margin="576,399,145,179"/>
+            <Button x:Name="btnSearch" FontSize="25" Content="Search" Click="BtnSearch_Click" Margin="780,391,48,171" Style="{StaticResource StyledButton}"/>
+            <ListBox x:Name="lbResults" SelectionChanged="lbResults_SelectionChanged" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="296" Height="70" Margin="576,0,0,74"/>
 
 
 

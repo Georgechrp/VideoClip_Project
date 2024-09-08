@@ -239,5 +239,97 @@ namespace VideoClip_Project
 
             MessageBox.Show("Log Out Succesfully");
         }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string searchText = txtSearch.Text.ToLower();  // Το κείμενο αναζήτησης από τον χρήστη
+            string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";  // Η σύνδεση με τη βάση δεδομένων
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
+
+                    // Δημιουργία SQL ερωτήματος με χρήση LIKE για την αναζήτηση
+                    string sql = "SELECT title, averageRating FROM video_clips WHERE LOWER(title) LIKE @searchText";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Προσθήκη παραμέτρου στο SQL query με '%' για εύρεση μερικού κειμένου
+                        cmd.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            lbResults.Items.Clear();  // Καθαρισμός των παλιών αποτελεσμάτων
+
+                            // Επεξεργασία των αποτελεσμάτων από το ερώτημα
+                            while (reader.Read())
+                            {
+                                string title = reader["title"].ToString();
+                                int rating = Convert.ToInt32(reader["averageRating"]);
+
+                                // Προσθήκη του τίτλου και της βαθμολογίας στο ListBox
+                                lbResults.Items.Add($"{System.IO.Path.GetFileName(title)} (Rating: {rating})");
+                            }
+
+                            if (lbResults.Items.Count == 0)
+                            {
+                                lbResults.Items.Add("No results found.");  // Αν δεν υπάρχουν αποτελέσματα
+                            }
+                        }
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Σφάλμα κατά την αναζήτηση στη βάση δεδομένων: " + ex.Message);
+            }
+        }
+
+
+        private void lbResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Έλεγχος αν έχει επιλεγεί κάποιο στοιχείο
+            if (lbResults.SelectedItem != null)
+            {
+                // Πάρε το επιλεγμένο βίντεο από τη λίστα
+                string? selectedVideoInfo = lbResults.SelectedItem?.ToString();
+
+
+                // Εξαγωγή του πλήρους μονοπατιού του βίντεο (αν το έχεις αποθηκευμένο)
+                // Εδώ υποθέτουμε ότι το όνομα του αρχείου (ή το μονοπάτι) είναι αποθηκευμένο ως μέρος της εγγραφής που εμφανίζεται
+                string videoPath = GetFullVideoPathFromResult(selectedVideoInfo);
+
+                if (File.Exists(videoPath))
+                {
+                    // Ρύθμιση της πηγής του MediaElement με το μονοπάτι του βίντεο
+                    mediaElement.Source = new Uri(videoPath);
+                    mediaElement.Play();  // Παίζει το βίντεο
+                }
+                else
+                {
+                    MessageBox.Show("Το βίντεο δεν βρέθηκε στο μονοπάτι: " + videoPath);
+                }
+            }
+        }
+
+        // Αυτή η μέθοδος επιστρέφει το πλήρες μονοπάτι του βίντεο με βάση το αποτέλεσμα αναζήτησης
+        private string GetFullVideoPathFromResult(string selectedVideoInfo)
+        {
+            // Θα πρέπει να βρεις τρόπο να αντιστοιχίσεις το "selectedVideoInfo" με το πραγματικό μονοπάτι του αρχείου
+            // Αν αποθηκεύεις το πλήρες μονοπάτι στη βάση ή κάπου αλλού, το επαναφέρεις εδώ
+            // Για παράδειγμα, αν ο τίτλος είναι το όνομα του αρχείου:
+
+            string videoFolder = "C:\\Users\\georg\\GITHUB PROJECTS\\VideoClip_Project\\videos";
+            string fileName = selectedVideoInfo.Split('(')[0];  // Παίρνεις το πρώτο κομμάτι πριν τη βαθμολογία
+            string fullPath = System.IO.Path.Combine(videoFolder, fileName);
+
+            return fullPath;
+        }
+
+
     }
 }

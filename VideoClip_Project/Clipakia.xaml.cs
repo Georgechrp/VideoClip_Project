@@ -92,91 +92,16 @@ namespace VideoClip_Project
         }
 
         private string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
-        public void AddRating(string username, string rating, string videoTitle)
-        {
-            try
-            {
-                using (MySqlConnection con = new MySqlConnection(connstring))
-                {
-                    con.Open();
 
-                    int ratingInt;
-                    if (!int.TryParse(rating, out ratingInt))
-                    {
-                        throw new ArgumentException("Invalid rating value");
-                    }
-
-                    // SQL query to insert the rating into the video_ratings table
-                    string sql = "INSERT INTO ratings (username, title, rating) VALUES (@username, @videoTitle, @rating)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
-                    {
-                        // Add parameters to the SQL query to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@rating", rating);
-                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
-
-                        // Execute the query
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.ToString());
-
-            }
-        }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            string searchText = txtSearch.Text.ToLower();
-            var results = videoClips.Where(v => v.Title.ToLower().Contains(searchText)).ToList();
-            lbResults.Items.Clear();
-            foreach (var result in results)
-            {
-                lbResults.Items.Add($"{System.IO.Path.GetFileName(result.Title)} (Rating: {result.Rating})");
-            }
+           
         }
 
-        public void AddVideoClip(string videoTitle, string rating)
-        {
-            try
-            {
-                using (MySqlConnection con = new MySqlConnection(connstring))
-                {
-                    con.Open();
 
-                    int ratingInt;
-                    if (!int.TryParse(rating, out ratingInt))
-                    {
-                        throw new ArgumentException("Invalid rating value");
-                    }
 
-                    // SQL query to insert the rating into the video_ratings table
-                    string sql = "INSERT INTO video_clips (title, averageRating) VALUES (@videoTitle, @rating)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
-                    {
-                        // Add parameters to the SQL query to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@rating", rating);
-                        cmd.Parameters.AddWithValue("@videoTitle", videoTitle);
-
-                        // Execute the query
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                // Optional: Handle exception (e.g., log the error, rethrow the exception, etc.)
-            }
-        }
         private void insertClipInDatabase(string title, int averageRating)
         {
             try
@@ -254,27 +179,82 @@ namespace VideoClip_Project
             insertClipInDatabase(videoTitle, 0);
         }
 
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        private void DeleteVideoFromFolder(string videoTitle)
         {
-            if (mediaElement.Source != null)
+            try
             {
-                VideoClip? currentVideo = videoClips.FirstOrDefault(v => v.Path == mediaElement.Source.LocalPath);
-                if (currentVideo != null)
+                // Φάκελος προορισμού όπου βρίσκεται το βίντεο
+                string destinationFolder = "C:\\Users\\georg\\GITHUB PROJECTS\\VideoClip_Project\\videos";
+
+                // Παίρνεις το όνομα και την επέκταση του αρχείου (π.χ., my_video.mp4)
+                string fileName = System.IO.Path.GetFileName("C:\\Users\\georg\\Downloads\\" + videoTitle + ".mp4");
+
+                // Ο πλήρης προορισμός του αρχείου
+                string filePath = System.IO.Path.Combine(destinationFolder, fileName);
+
+                // Έλεγχος αν το αρχείο υπάρχει πριν τη διαγραφή
+                if (File.Exists(filePath))
                 {
-                    videoClips.Remove(currentVideo);
-                    SaveVideoClips();
-                    MessageBox.Show($"Video clip '{currentVideo.Title}' deleted successfully.");
-                    mediaElement.Source = null; // Clear the mediaElement source if necessary
+                    // Διαγραφή του αρχείου
+                    File.Delete(filePath);
+                    MessageBox.Show("Το βίντεο διαγράφηκε επιτυχώς από το φάκελο.");
                 }
                 else
                 {
-                    MessageBox.Show("No video clip found to delete.");
+                    MessageBox.Show("Το αρχείο δεν βρέθηκε.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No video clip to delete.");
+                MessageBox.Show("Αποτυχία διαγραφής του βίντεο: " + ex.Message);
             }
+        }
+        private void DeleteClipFromDatabase(string title)
+        {
+            try
+            {
+                string connstring = "server=localhost; uid=root; pwd=gr3ty; database=ratemyclipdb";
+                using (MySqlConnection con = new MySqlConnection(connstring))
+                {
+                    con.Open();
+                    // SQL query για διαγραφή του βίντεο από τον πίνακα
+                    string sql = "DELETE FROM video_clips WHERE title = @title";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        // Προσθήκη παραμέτρου για την αποφυγή SQL injection
+                        cmd.Parameters.AddWithValue("@title", title);
+
+                        // Εκτέλεση της διαγραφής
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Έλεγχος αν έγινε η διαγραφή
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Το βίντεο " + title + " διαγράφηκε επιτυχώς από τη βάση.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Αποτυχία διαγραφής από τη βάση.");
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.Write(ex.ToString());
+            }
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Πρώτα διαγράφεις το βίντεο από τον φάκελο
+            DeleteVideoFromFolder(videoTitle);
+
+            // Στη συνέχεια διαγράφεις την αντίστοιχη εγγραφή από τη βάση δεδομένων
+            DeleteClipFromDatabase(videoTitle);
+           
         }
 
         private void GotoMainButton_Click(object sender, RoutedEventArgs e)
